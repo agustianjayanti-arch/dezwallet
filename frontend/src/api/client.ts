@@ -2,8 +2,11 @@ import axios from 'axios'
 import type { AxiosInstance } from 'axios'
 
 function createClient(tokenKey: string, redirectPath: string): AxiosInstance {
+    const apiUrl = import.meta.env.VITE_API_URL || '/api'
+    console.log('API URL:', apiUrl, 'ENV:', import.meta.env)
+
     const instance = axios.create({
-        baseURL: import.meta.env.VITE_API_URL || '/api',
+        baseURL: apiUrl,
         timeout: 10000,
         headers: { 'Content-Type': 'application/json' },
     })
