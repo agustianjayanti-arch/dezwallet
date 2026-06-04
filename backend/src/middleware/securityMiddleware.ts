@@ -33,8 +33,12 @@ export function configureSecurityMiddleware(app: Application): void {
 
     // ── CORS Configuration ────────────────────────────────────────────────────
     // Mengatur siapa saja yang bisa access API
+    const allowedOrigins = process.env.CORS_ORIGIN
+        ? process.env.CORS_ORIGIN.split(',').map(o => o.trim())
+        : ['http://localhost:5173', 'http://localhost:3000'];
+
     const corsOptions: cors.CorsOptions = {
-        origin: process.env.CORS_ORIGIN || ['http://localhost:5173', 'http://localhost:3000'],
+        origin: allowedOrigins,
         credentials: true,
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization'],
