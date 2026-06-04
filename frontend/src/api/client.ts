@@ -2,7 +2,8 @@ import axios from 'axios'
 import type { AxiosInstance } from 'axios'
 
 function createClient(tokenKey: string, redirectPath: string): AxiosInstance {
-    const apiUrl = import.meta.env.VITE_API_URL || '/api'
+    // Temporary hardcode until Vercel env var works
+    const apiUrl = 'https://backend-production-9c1d.up.railway.app/api'
     console.log('API URL:', apiUrl, 'ENV:', import.meta.env)
 
     const instance = axios.create({
